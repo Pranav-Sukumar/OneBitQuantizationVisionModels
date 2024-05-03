@@ -12,6 +12,8 @@ import time
 from torch.utils.data import DataLoader
 from models.resnet_18_custom import BasicBlock
 from models.resnet_18_custom import ResNet
+from models.resnet_18_custom import ResNet
+from models.resnet_18_custom import ResNetQuantized
 
 
 
@@ -141,13 +143,34 @@ def test(model: nn.Module, dataloader: DataLoader, max_samples=None) -> float:
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
 
-train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-Quantization", 10)
+train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 10)
 
 wandb.init(
   # Set the project where this run will be logged
   project="OneBitQuantization",
   # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
   name="ResNet18-CIFAR-10-NoQuantization",
+  # Track hyperparameters and run metadata
+)
+s = time.time()
+for i in range(30):
+  score = test(resnet_18, testloader_cifar_10)
+print((time.time() - s) / 30)
+print('Accuracy of the network on the test images: {}%'.format(score))
+
+wandb.log({"Test Accuracy": score})
+wandb.finish()
+
+
+resnet_18 = ResNetQuantized(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
+
+train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-Quantization", 10)
+
+wandb.init(
+  # Set the project where this run will be logged
+  project="OneBitQuantization",
+  # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
+  name="ResNet18-CIFAR-10-Quantization",
   # Track hyperparameters and run metadata
 )
 s = time.time()
