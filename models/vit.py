@@ -11,4 +11,7 @@ class VITModelNotQuantized:
     model = ViTForImageClassification.from_pretrained(model_name_or_path, num_labels=num_labels)
     
     
-    
+
+
+
+
