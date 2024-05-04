@@ -4,7 +4,9 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 from typing import Type
-from typing import Tuple
+from typing import Tuple, List
+import numpy as np
+
 
 class QuantizationUtilityFunctions:
 
@@ -115,6 +117,5 @@ class QuantizationUtilityFunctions:
             else:
                 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, layer)
         print(f"Quantized layers: {layers_quantized}")
-        
         
 
