@@ -87,7 +87,7 @@ TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuanti
 print("Now Testing CIFAR-100")
 
 alexnet = AlexNet(num_classes=100).to(device)
-TrainTestUtils.train(device, alexnet, trainloader_cifar_100, "AlexNet-CIFAR-10-NoQuantization", 20)
+TrainTestUtils.train(device, alexnet, trainloader_cifar_100, "AlexNet-CIFAR-100-NoQuantization", 20)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-100-NoQuantization", alexnet, testloader_cifar_100)
 
 
