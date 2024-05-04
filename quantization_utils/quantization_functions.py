@@ -97,7 +97,7 @@ class QuantizationUtilityFunctions:
             else:
                 QuantizationUtilityFunctions.quantize_layer_weights(device, layer)
 
-        print(f"Quantized layers: {layers_quantized}")
+        #print(f"Quantized layers: {layers_quantized}")
 
     def quantize_layer_weights_including_conv(device, model):
         layers_quantized = 0
@@ -116,6 +116,6 @@ class QuantizationUtilityFunctions:
                     raise Exception("Quantized weights of {} layer include non-integer values".format(layer.__class__.__name__))
             else:
                 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, layer)
-        print(f"Quantized layers: {layers_quantized}")
+        #print(f"Quantized layers: {layers_quantized}")
         
 
