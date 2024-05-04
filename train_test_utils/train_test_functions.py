@@ -108,7 +108,7 @@ class TrainTestUtils:
         )
         s = time.time()
         for i in range(30):
-            score = TrainTestUtils.test(device, model_to_test, data_loader)
+            score = TrainTestUtils.test(device = device, model = model_to_test, dataloader = data_loader)
         average_inference_time = (time.time() - s) / 30
         print(average_inference_time)
         print('Accuracy of the network on the test images: {}%'.format(score))

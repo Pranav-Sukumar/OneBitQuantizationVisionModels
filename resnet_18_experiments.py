@@ -63,8 +63,7 @@ print("Testing CIFAR-10")
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
 TrainTestUtils.train(device, resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 1)
-TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-NoQuantization", resnet_18, testset_cifar_10)
-
+TrainTestUtils.test_and_export_logs(device = device, wandb_log_name = "ResNet18-CIFAR-10-NoQuantization", model_to_test = resnet_18, data_loader = testset_cifar_10)
 
 resnet_18_quantized_linear = QuantizationUtilityFunctions.copy_model(resnet_18)
 QuantizationUtilityFunctions.quantize_layer_weights(device, resnet_18_quantized_linear)
