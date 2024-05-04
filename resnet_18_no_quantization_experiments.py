@@ -142,55 +142,42 @@ def test(model: nn.Module, dataloader: DataLoader, max_samples=None) -> float:
 
     return 100 * correct / total
 
+def test_and_export_logs(wandb_log_name, model_to_test):
+  wandb.init(
+  # Set the project where this run will be logged
+  project="OneBitQuantization",
+  # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
+  name=wandb_log_name,
+  # Track hyperparameters and run metadata
+)
+  s = time.time()
+  for i in range(30):
+    score = test(model_to_test, testloader_cifar_10)
+  average_inference_time = (time.time() - s) / 30
+  print(average_inference_time)
+  print('Accuracy of the network on the test images: {}%'.format(score))
+
+  wandb.log({"Test Accuracy": score})
+  wandb.log({"Average Inference Time": average_inference_time})
+  
+  #print(f"Size of model is {print_model_size(model_to_test)}")
+
+  wandb.finish()
+  
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
+train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 10)
+test_and_export_logs("ResNet18-CIFAR-10-NoQuantization", resnet_18)
 
-train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 1)
-
-wandb.init(
-  # Set the project where this run will be logged
-  project="OneBitQuantization",
-  # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
-  name="ResNet18-CIFAR-10-NoQuantization",
-  # Track hyperparameters and run metadata
-)
-s = time.time()
-for i in range(30):
-  score = test(resnet_18, testloader_cifar_10)
-average_inference_time = (time.time() - s) / 30
-print(average_inference_time)
-print('Accuracy of the network on the test images: {}%'.format(score))
-
-wandb.log({"Test Accuracy": score})
-wandb.log({"Average Inference Time": average_inference_time})
-
-wandb.finish()
-
-
-
-
-
-wandb.init(
-  # Set the project where this run will be logged
-  project="OneBitQuantization",
-  # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
-  name="ResNet18-CIFAR-10-PostTrainingQuantizationLinear",
-  # Track hyperparameters and run metadata
-)
 
 resnet_18_quantized_linear = QuantizationUtilityFunctions.copy_model(resnet_18)
 QuantizationUtilityFunctions.quantize_layer_weights(device, resnet_18_quantized_linear)
+test_and_export_logs("ResNet18-CIFAR-10-PostTrainingQuantizationLinear", resnet_18_quantized_linear)
 
-s = time.time()
-for i in range(30):
-  score = test(resnet_18_quantized_linear, testloader_cifar_10)
-average_inference_time = (time.time() - s) / 30
-print(average_inference_time)
-print('Accuracy of the network after quantizing all linear weights on CIFAR-10: {}%'.format(score))
 
-#print(f"Size of model is {print_model_size(resnet_18_quantized_linear)}")
+resnet_18_quantized_linear_and_conv = QuantizationUtilityFunctions.copy_model(resnet_18)
+QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, resnet_18_quantized_linear_and_conv)
+test_and_export_logs("ResNet18-CIFAR-10-PostTrainingQuantizationLinearAndConv", resnet_18_quantized_linear_and_conv)
 
-wandb.log({"Test Accuracy": score})
-wandb.log({"Average Inference Time": average_inference_time})
 
-wandb.finish()
+
