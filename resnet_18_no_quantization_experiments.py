@@ -15,6 +15,8 @@ from models.resnet_18_custom import ResNet
 from models.resnet_18_custom import ResNet
 from models.resnet_18_custom import ResNetQuantized
 
+from quantization_utils.quantization_functions import QuantizationUtilityFunctions
+
 
 
 import wandb
@@ -155,29 +157,40 @@ wandb.init(
 s = time.time()
 for i in range(30):
   score = test(resnet_18, testloader_cifar_10)
-print((time.time() - s) / 30)
+average_inference_time = (time.time() - s) / 30
+print(average_inference_time)
 print('Accuracy of the network on the test images: {}%'.format(score))
 
 wandb.log({"Test Accuracy": score})
+wandb.log({"Average Inference Time": average_inference_time})
+
 wandb.finish()
 
 
-resnet_18 = ResNetQuantized(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
 
-train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-Quantization", 10)
+
 
 wandb.init(
   # Set the project where this run will be logged
   project="OneBitQuantization",
   # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
-  name="ResNet18-CIFAR-10-Quantization",
+  name="ResNet18-CIFAR-10-PostTrainingQuantizationLinear",
   # Track hyperparameters and run metadata
 )
+
+resnet_18_quantized_linear = QuantizationUtilityFunctions.copy_model(resnet_18)
+QuantizationUtilityFunctions.quantize_layer_weights(device, resnet_18_quantized_linear)
+
 s = time.time()
 for i in range(30):
-  score = test(resnet_18, testloader_cifar_10)
-print((time.time() - s) / 30)
-print('Accuracy of the network on the test images: {}%'.format(score))
+  score = test(resnet_18_quantized_linear, testloader_cifar_10)
+average_inference_time = (time.time() - s) / 30
+print(average_inference_time)
+print('Accuracy of the network after quantizing all linear weights on CIFAR-10: {}%'.format(score))
+
+#print(f"Size of model is {print_model_size(resnet_18_quantized_linear)}")
 
 wandb.log({"Test Accuracy": score})
+wandb.log({"Average Inference Time": average_inference_time})
+
 wandb.finish()
