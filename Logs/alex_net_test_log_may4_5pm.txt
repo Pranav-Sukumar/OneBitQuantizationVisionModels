@@ -1,0 +1,350 @@
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Testing CIFAR-10
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_195931-72quiq81
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-10-NoQuantization
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/72quiq81
+Epoch 0 has a loss of 2.3021762079713595
+Epoch 1 has a loss of 2.248402750652262
+Epoch 2 has a loss of 1.8352820869447022
+Epoch 3 has a loss of 1.6109525984247297
+Epoch 4 has a loss of 1.4628690616945692
+Epoch 5 has a loss of 1.3288596784618523
+Epoch 6 has a loss of 1.2173412293863084
+Epoch 7 has a loss of 1.1125588380062497
+Epoch 8 has a loss of 1.0288014107801482
+Epoch 9 has a loss of 0.9487504734683326
+Epoch 10 has a loss of 0.8833075973443015
+Epoch 11 has a loss of 0.8188804900768241
+Epoch 12 has a loss of 0.7615584040099966
+Epoch 13 has a loss of 0.7121764860489547
+Epoch 14 has a loss of 0.6673573246481933
+Epoch 15 has a loss of 0.6248843488274518
+Epoch 16 has a loss of 0.5880190033944692
+Epoch 17 has a loss of 0.5494958074216422
+Epoch 18 has a loss of 0.5184227239700441
+Epoch 19 has a loss of 0.48005490983173166
+Finished Training
+wandb:                                                                                
+wandb: W&B sync reduced upload amount by 22.3%             
+wandb: 
+wandb: Run history:
+wandb: loss ██▆▅▅▄▄▃▃▃▃▂▂▂▂▂▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb: loss 0.48005
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-10-NoQuantization at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/72quiq81
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_195931-72quiq81/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_201409-26753yem
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-10-NoQuantization
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/26753yem
+1.9542346874872842
+Accuracy of the network on the test images: 78.69%
+wandb:                                                                                
+wandb: W&B sync reduced upload amount by 23.3%             
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.95423
+wandb:          Test Accuracy 78.69
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-10-NoQuantization at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/26753yem
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 2 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_201409-26753yem/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_201524-kg6o40ho
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-10-PostTrainingQuantizationLinear
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/kg6o40ho
+1.9147561232248942
+Accuracy of the network on the test images: 69.79%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.91476
+wandb:          Test Accuracy 69.79
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-10-PostTrainingQuantizationLinear at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/kg6o40ho
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_201524-kg6o40ho/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_201637-9f72iq8c
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-10-PostTrainingQuantizationLinearAndConv
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/9f72iq8c
+1.8656122128168742
+Accuracy of the network on the test images: 10.28%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.86561
+wandb:          Test Accuracy 10.28
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-10-PostTrainingQuantizationLinearAndConv at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/9f72iq8c
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_201637-9f72iq8c/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_201748-ghooxrxg
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedIterative
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/ghooxrxg
+1.8957217852274577
+Accuracy of the network on the test images: 64.55%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.89572
+wandb:          Test Accuracy 64.55
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedIterative at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/ghooxrxg
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_201748-ghooxrxg/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_201900-r2pocwu9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedL1Unstructured
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/r2pocwu9
+1.9062779426574707
+Accuracy of the network on the test images: 68.83%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.90628
+wandb:          Test Accuracy 68.83
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedL1Unstructured at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/r2pocwu9
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_201900-r2pocwu9/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_202013-rqaps03o
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedRandomUnstructured
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/rqaps03o
+1.9086840550104778
+Accuracy of the network on the test images: 22.2%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.90868
+wandb:          Test Accuracy 22.2
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedRandomUnstructured at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/rqaps03o
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_202013-rqaps03o/logs
+Now Testing CIFAR-100
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_202126-wlvqxug4
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-100-NoQuantization
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/wlvqxug4
+Epoch 0 has a loss of 4.605397179274703
+Epoch 1 has a loss of 4.6051972542370425
+Epoch 2 has a loss of 4.6049436031056
+Epoch 3 has a loss of 4.60397764207153
+Epoch 4 has a loss of 4.55085018454495
+Epoch 5 has a loss of 4.451244723392616
+Epoch 6 has a loss of 4.183718546948521
+Epoch 7 has a loss of 3.9403605865349163
+Epoch 8 has a loss of 3.794480888033554
+Epoch 9 has a loss of 3.6510440606149586
+Epoch 10 has a loss of 3.498616924822826
+Epoch 11 has a loss of 3.333014696130978
+Epoch 12 has a loss of 3.160774314090829
+Epoch 13 has a loss of 3.0130297901229226
+Epoch 14 has a loss of 2.8785500654561047
+Epoch 15 has a loss of 2.7517639015701745
+Epoch 16 has a loss of 2.6426713573421643
+Epoch 17 has a loss of 2.5255218116579647
+Epoch 18 has a loss of 2.420156272572733
+Epoch 19 has a loss of 2.3083757914874465
+Finished Training
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: loss ██████▇▆▆▅▅▄▄▃▃▂▂▂▁▁
+wandb: 
+wandb: Run summary:
+wandb: loss 2.30838
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-100-NoQuantization at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/wlvqxug4
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_202126-wlvqxug4/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_203603-kao6z41w
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-100-NoQuantization
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/kao6z41w
+1.9612075805664062
+Accuracy of the network on the test images: 36.05%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.96121
+wandb:          Test Accuracy 36.05
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-100-NoQuantization at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/kao6z41w
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_203603-kao6z41w/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_203720-tm6824n7
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-100-PostTrainingQuantizationLinear
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/tm6824n7
+1.9231604894002279
+Accuracy of the network on the test images: 9.68%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.92316
+wandb:          Test Accuracy 9.68
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-100-PostTrainingQuantizationLinear at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/tm6824n7
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_203720-tm6824n7/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_203833-j52v430v
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-100-PostTrainingQuantizationLinearAndConv
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/j52v430v
+1.8686393658320108
+Accuracy of the network on the test images: 1.69%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.86864
+wandb:          Test Accuracy 1.69
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-100-PostTrainingQuantizationLinearAndConv at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/j52v430v
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_203833-j52v430v/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_203944-srtchyj1
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-100-PostTrainingQuantizationLinearPrunedIterative
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/srtchyj1
+1.9111093362172444
+Accuracy of the network on the test images: 7.77%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.91111
+wandb:          Test Accuracy 7.77
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-100-PostTrainingQuantizationLinearPrunedIterative at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/srtchyj1
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_203944-srtchyj1/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_204057-jjvtcvws
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-100-PostTrainingQuantizationLinearPrunedL1Unstructured
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/jjvtcvws
+1.9153004884719849
+Accuracy of the network on the test images: 9.5%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.9153
+wandb:          Test Accuracy 9.5
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-100-PostTrainingQuantizationLinearPrunedL1Unstructured at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/jjvtcvws
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_204057-jjvtcvws/logs
+wandb: Tracking run with wandb version 0.16.6
+wandb: Run data is saved locally in /home/ps3388/OneBitQuantizationVisionModels/wandb/run-20240504_204209-1g6opod9
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run AlexNet-CIFAR-100-PostTrainingQuantizationLinearPrunedRandomUnstructured
+wandb: ⭐️ View project at https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: 🚀 View run at https://wandb.ai/hpml-pranav/OneBitQuantization/runs/1g6opod9
+1.9189826091130575
+Accuracy of the network on the test images: 6.03%
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb: Average Inference Time ▁
+wandb:          Test Accuracy ▁
+wandb: 
+wandb: Run summary:
+wandb: Average Inference Time 1.91898
+wandb:          Test Accuracy 6.03
+wandb: 
+wandb: 🚀 View run AlexNet-CIFAR-100-PostTrainingQuantizationLinearPrunedRandomUnstructured at: https://wandb.ai/hpml-pranav/OneBitQuantization/runs/1g6opod9
+wandb: ⭐️ View project at: https://wandb.ai/hpml-pranav/OneBitQuantization
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20240504_204209-1g6opod9/logs
