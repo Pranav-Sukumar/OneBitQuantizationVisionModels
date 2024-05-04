@@ -145,7 +145,7 @@ def test(model: nn.Module, dataloader: DataLoader, max_samples=None) -> float:
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
 
-train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 10)
+train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 1)
 
 wandb.init(
   # Set the project where this run will be logged

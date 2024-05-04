@@ -77,12 +77,12 @@ class QuantizationUtilityFunctions:
 
         return torch.clamp(result, min=-1, max=1), scale
 
-    def quantize_layer_weights(model: nn.Module):
+    def quantize_layer_weights(device, model):
         layers_quantized = 0
         for layer in model.children():
             if isinstance(layer, nn.Linear):
                 layers_quantized += 1
-                q_layer_data, scale = quantized_weights(layer.weight.data)
+                q_layer_data, scale = QuantizationUtilityFunctions.quantized_weights(layer.weight.data)
                 q_layer_data = q_layer_data.to(device)
 
                 layer.weight.data = q_layer_data
@@ -93,16 +93,16 @@ class QuantizationUtilityFunctions:
                 if (q_layer_data != q_layer_data.round()).any():
                     raise Exception("Quantized weights of {} layer include non-integer values".format(layer.__class__.__name__))
             else:
-                quantize_layer_weights(layer)
+                QuantizationUtilityFunctions.quantize_layer_weights(device, layer)
 
         print(f"Quantized layers: {layers_quantized}")
 
-    def quantize_layer_weights_including_conv(model: nn.Module):
+    def quantize_layer_weights_including_conv(device, model):
         layers_quantized = 0
         for layer in model.children():
             if isinstance(layer, nn.Linear) or isinstance(layer, nn.Conv2d):
                 layers_quantized  += 1
-                q_layer_data, scale = quantized_weights(layer.weight.data)
+                q_layer_data, scale = QuantizationUtilityFunctions.quantized_weights(layer.weight.data)
                 q_layer_data = q_layer_data.to(device)
 
                 layer.weight.data = q_layer_data
@@ -113,5 +113,8 @@ class QuantizationUtilityFunctions:
                 if (q_layer_data != q_layer_data.round()).any():
                     raise Exception("Quantized weights of {} layer include non-integer values".format(layer.__class__.__name__))
             else:
-                quantize_layer_weights_including_conv(layer)
+                QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, layer)
         print(f"Quantized layers: {layers_quantized}")
+        
+        
+
