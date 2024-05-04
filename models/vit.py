@@ -8,7 +8,7 @@ class VITModelNotQuantized:
     model_name_or_path = 'google/vit-base-patch16-224-in21k'
     num_labels = 10
     
-    model = ViTForImageClassification.from_pretrained(model_name_or_path, num_labels=num_labels)
+    vit_model = ViTForImageClassification.from_pretrained(model_name_or_path, num_labels=num_labels)
     
     
 
