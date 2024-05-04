@@ -16,7 +16,7 @@ from models.resnet_18_custom import ResNet
 from models.resnet_18_custom import ResNetQuantized
 
 from quantization_utils.quantization_functions import QuantizationUtilityFunctions
-from train_test_utils.train_test_functions import TrainTestUtilsCustom
+from train_test_utils.train_test_functions import TrainTestUtils
 
 
 import wandb
