@@ -59,31 +59,31 @@ print("Testing CIFAR-10")
 
 alexnet = AlexNet(img_channels=3, num_layers=18, num_classes=10).to(device)
 TrainTestUtils.train(device, alexnet, trainloader_cifar_10, "AlexNet-CIFAR-10-NoQuantization", 10)
-TrainTestUtils.test_and_export_logs("ResNet-CIFAR-10-NoQuantization", alexnet, testset_cifar_10)
+TrainTestUtils.test_and_export_logs(device, "ResNet-CIFAR-10-NoQuantization", alexnet, testset_cifar_10)
 
 
 alexnet_quantized_linear = QuantizationUtilityFunctions.copy_model(alexnet)
 QuantizationUtilityFunctions.quantize_layer_weights(device, alexnet_quantized_linear)
-TrainTestUtils.test_and_export_logs("AlexNet-CIFAR-10-PostTrainingQuantizationLinear", alexnet_quantized_linear, testset_cifar_10)
+TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinear", alexnet_quantized_linear, testset_cifar_10)
 
 
 alexnet_quantized_linear_and_conv = QuantizationUtilityFunctions.copy_model(alexnet)
 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, alexnet_quantized_linear_and_conv)
-TrainTestUtils.test_and_export_logs("AlexNet-CIFAR-10-PostTrainingQuantizationLinearAndConv", alexnet_quantized_linear_and_conv, testset_cifar_10)
+TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinearAndConv", alexnet_quantized_linear_and_conv, testset_cifar_10)
 
 
 print("Now Testing CIFAR-100")
 
 alexnet = AlexNet(img_channels=3, num_layers=18, num_classes=100).to(device)
 TrainTestUtils.train(device, alexnet, trainloader_cifar_100, "AlexNet-CIFAR-10-NoQuantization", 100)
-TrainTestUtils.test_and_export_logs("ResNet-CIFAR-100-NoQuantization", alexnet, testset_cifar_100)
+TrainTestUtils.test_and_export_logs(device, "ResNet-CIFAR-100-NoQuantization", alexnet, testset_cifar_100)
 
 
 alexnet_quantized_linear = QuantizationUtilityFunctions.copy_model(alexnet)
 QuantizationUtilityFunctions.quantize_layer_weights(device, alexnet_quantized_linear)
-TrainTestUtils.test_and_export_logs("AlexNet-CIFAR-100-PostTrainingQuantizationLinear", alexnet_quantized_linear, testset_cifar_100)
+TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-100-PostTrainingQuantizationLinear", alexnet_quantized_linear, testset_cifar_100)
 
 
 alexnet_quantized_linear_and_conv = QuantizationUtilityFunctions.copy_model(alexnet)
 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, alexnet_quantized_linear_and_conv)
-TrainTestUtils.test_and_export_logs("AlexNet-CIFAR-100-PostTrainingQuantizationLinearAndConv", alexnet_quantized_linear_and_conv, testset_cifar_100)
+TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-100-PostTrainingQuantizationLinearAndConv", alexnet_quantized_linear_and_conv, testset_cifar_100)

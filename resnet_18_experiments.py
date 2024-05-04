@@ -63,17 +63,17 @@ print("Testing CIFAR-10")
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
 TrainTestUtils.train(device, resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 10)
-TrainTestUtils.test_and_export_logs("ResNet18-CIFAR-10-NoQuantization", resnet_18, testset_cifar_10)
+TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-NoQuantization", resnet_18, testset_cifar_10)
 
 
 resnet_18_quantized_linear = QuantizationUtilityFunctions.copy_model(resnet_18)
 QuantizationUtilityFunctions.quantize_layer_weights(device, resnet_18_quantized_linear)
-TrainTestUtils.test_and_export_logs("ResNet18-CIFAR-10-PostTrainingQuantizationLinear", resnet_18_quantized_linear, testset_cifar_10)
+TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinear", resnet_18_quantized_linear, testset_cifar_10)
 
 
 resnet_18_quantized_linear_and_conv = QuantizationUtilityFunctions.copy_model(resnet_18)
 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, resnet_18_quantized_linear_and_conv)
-TrainTestUtils.test_and_export_logs("ResNet18-CIFAR-10-PostTrainingQuantizationLinearAndConv", resnet_18_quantized_linear_and_conv, testset_cifar_10)
+TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinearAndConv", resnet_18_quantized_linear_and_conv, testset_cifar_10)
 
 
 print("Now Testing CIFAR-100")
