@@ -58,7 +58,7 @@ testloader_cifar_100 = torch.utils.data.DataLoader(testset_cifar_100, batch_size
 print("Testing CIFAR-10")
 
 alexnet = AlexNet(img_channels=3, num_layers=18, num_classes=10).to(device)
-TrainTestUtils.train(device, alexnet, trainloader_cifar_10, "AlexNet-CIFAR-10-NoQuantization", 10)
+TrainTestUtils.train(device, alexnet, trainloader_cifar_10, "AlexNet-CIFAR-10-NoQuantization", 1)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-NoQuantization", alexnet, testloader_cifar_10)
 
 
@@ -75,7 +75,7 @@ TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuanti
 print("Now Testing CIFAR-100")
 
 alexnet = AlexNet(img_channels=3, num_layers=18, num_classes=100).to(device)
-TrainTestUtils.train(device, alexnet, trainloader_cifar_100, "AlexNet-CIFAR-10-NoQuantization", 100)
+TrainTestUtils.train(device, alexnet, trainloader_cifar_100, "AlexNet-CIFAR-10-NoQuantization", 1)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-100-NoQuantization", alexnet, testloader_cifar_100)
 
 
