@@ -57,7 +57,18 @@ testloader_cifar_100 = torch.utils.data.DataLoader(testset_cifar_100, batch_size
                                          shuffle=False, num_workers=2)
 
 def train(device, model: nn.Module, dataloader: DataLoader, experiment_name, num_epochs = 5):
-
+    wandb.init(
+        # Set the project where this run will be logged
+        project="OneBitQuantization",
+        # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
+        name=experiment_name,
+        # Track hyperparameters and run metadata
+        config={
+        "learning_rate": 0.001,
+        "architecture": "ResNet18",
+        "epochs": num_epochs,
+        })
+    
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
 
@@ -92,7 +103,10 @@ def train(device, model: nn.Module, dataloader: DataLoader, experiment_name, num
                     (epoch + 1, i + 1, running_loss / 2000))
                 running_loss = 0.0
         average_batch_loss = total_batch_loss / num_batches
+        wandb.log({"loss": average_batch_loss})
         print(f"Epoch {epoch} has a loss of {average_batch_loss}")
+    print('Finished Training')
+    wandb.finish()
 
 def test(device, model: nn.Module, dataloader: DataLoader, max_samples=None) -> float:
     correct = 0
@@ -127,9 +141,9 @@ def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         # Track hyperparameters and run metadata
         )
         s = time.time()
-        for i in range(30):
+        for i in range(5):
             score = test(device = device, model = model_to_test, dataloader = data_loader)
-        average_inference_time = (time.time() - s) / 30
+        average_inference_time = (time.time() - s) / 5
         print(average_inference_time)
         print('Accuracy of the network on the test images: {}%'.format(score))
 
