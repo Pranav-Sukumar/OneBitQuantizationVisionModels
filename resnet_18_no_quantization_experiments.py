@@ -61,7 +61,7 @@ testloader_cifar_100 = torch.utils.data.DataLoader(testset_cifar_100, batch_size
 print("Testing CIFAR-10")
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
-TrainTestUtils.train(resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 10)
+TrainTestUtils.train(device, resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 10)
 TrainTestUtils.test_and_export_logs("ResNet18-CIFAR-10-NoQuantization", resnet_18, testset_cifar_10)
 
 
