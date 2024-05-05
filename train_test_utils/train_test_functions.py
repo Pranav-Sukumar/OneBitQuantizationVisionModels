@@ -20,7 +20,7 @@ class TrainTestUtils:
 
         wandb.init(
         # Set the project where this run will be logged
-        project="OneBitQuantization",
+        project="OnePointFiveBitQuantizationResultsFinal",
         # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
         name=experiment_name,
         # Track hyperparameters and run metadata
@@ -101,7 +101,7 @@ class TrainTestUtils:
     def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         wandb.init(
         # Set the project where this run will be logged
-        project="OneBitQuantization",
+        project="OnePointFiveBitQuantizationResultsFinal",
         # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
         name=wandb_log_name,
         # Track hyperparameters and run metadata

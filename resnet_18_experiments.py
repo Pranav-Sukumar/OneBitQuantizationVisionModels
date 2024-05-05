@@ -21,6 +21,8 @@ from pruning_utils.pruning_functions import PruningUtils
 
 
 import wandb
+
+NUM_EPOCHS = 30
 wandb.login()
 
 if torch.cuda.is_available():
@@ -63,7 +65,7 @@ testloader_cifar_100 = torch.utils.data.DataLoader(testset_cifar_100, batch_size
 print("Testing CIFAR-10")
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
-TrainTestUtils.train(device, resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", 20)
+TrainTestUtils.train(device, resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", NUM_EPOCHS)
 TrainTestUtils.test_and_export_logs(device = device, wandb_log_name = "ResNet18-CIFAR-10-NoQuantization", model_to_test = resnet_18, data_loader = testloader_cifar_10)
 
 resnet_18_quantized_linear = QuantizationUtilityFunctions.copy_model(resnet_18)
@@ -92,7 +94,7 @@ TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuant
 print("Now Testing CIFAR-100")
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=100).to(device)
-TrainTestUtils.train(device, resnet_18, trainloader_cifar_100, "ResNet18-CIFAR-100-NoQuantization", 20)
+TrainTestUtils.train(device, resnet_18, trainloader_cifar_100, "ResNet18-CIFAR-100-NoQuantization", NUM_EPOCHS)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-100-NoQuantization", resnet_18, testloader_cifar_100)
 
 
