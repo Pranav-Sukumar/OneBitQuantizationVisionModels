@@ -80,7 +80,7 @@ TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuant
 print("Pruning CIFAR-10")
 
 resnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(resnet_18_quantized_linear)
-PruningUtils.prune_model_iterative(resnet_quantized_linear_pruned_conv)
+PruningUtils.prune_model_l2_structured(resnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinearPrunedIterative", resnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
 resnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(resnet_18_quantized_linear)
@@ -109,7 +109,7 @@ TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-100-PostTrainingQuan
 
 print("Pruning CIFAR-100")
 resnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(resnet_18_quantized_linear)
-PruningUtils.prune_model_iterative(resnet_quantized_linear_pruned_conv)
+PruningUtils.prune_model_l2_structured(resnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-100-PostTrainingQuantizationLinearPrunedIterative", resnet_quantized_linear_pruned_conv, testloader_cifar_100)
 
 resnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(resnet_18_quantized_linear)

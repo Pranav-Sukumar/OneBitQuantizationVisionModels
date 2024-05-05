@@ -75,7 +75,7 @@ TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuanti
 
 
 alexnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(alexnet_quantized_linear)
-PruningUtils.prune_model_iterative(alexnet_quantized_linear_pruned_conv)
+PruningUtils.prune_model_l2_structured(alexnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedIterative", alexnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
 alexnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(alexnet_quantized_linear)
@@ -104,7 +104,7 @@ TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-100-PostTrainingQuant
 
 
 alexnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(alexnet_quantized_linear)
-PruningUtils.prune_model_iterative(alexnet_quantized_linear_pruned_conv)
+PruningUtils.prune_model_l2_structured(alexnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-100-PostTrainingQuantizationLinearPrunedIterative", alexnet_quantized_linear_pruned_conv, testloader_cifar_100)
 
 alexnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(alexnet_quantized_linear)

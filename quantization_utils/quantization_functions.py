@@ -34,7 +34,7 @@ class QuantizationUtilityFunctions:
                     result_layer.output_scale = deepcopy(original_layer.output_scale)
 
             else:
-                # Handle other possible nested modules such as nn.Sequential, etc.
+                # Recursively copy
                 for child_result_layer, child_original_layer in zip(result_layer.children(), original_layer.children()):
                     recursive_layer_copy(child_result_layer, child_original_layer)
 
@@ -67,8 +67,8 @@ class QuantizationUtilityFunctions:
 
         weights = torch.clamp(weights, min=-128, max=127)
         weights = weights - torch.mean(weights)
-        q_max = 3
-        q_min = 1
+        q_max = 1
+        q_min = -1
         r_max = torch.max(weights).item()
         r_min = torch.min(weights).item()
 
@@ -95,9 +95,9 @@ class QuantizationUtilityFunctions:
                 if (q_layer_data != q_layer_data.round()).any():
                     raise Exception("Quantized weights of {} layer include non-integer values".format(layer.__class__.__name__))
             else:
+                # Recursively quantize
                 QuantizationUtilityFunctions.quantize_layer_weights(device, layer)
 
-        #print(f"Quantized layers: {layers_quantized}")
 
     def quantize_layer_weights_including_conv(device, model):
         layers_quantized = 0
@@ -115,7 +115,7 @@ class QuantizationUtilityFunctions:
                 if (q_layer_data != q_layer_data.round()).any():
                     raise Exception("Quantized weights of {} layer include non-integer values".format(layer.__class__.__name__))
             else:
+                # Recursively quantize
                 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, layer)
-        #print(f"Quantized layers: {layers_quantized}")
         
 

@@ -1,3 +1,5 @@
+# Credits to https://debuggercafe.com/implementing-resnet18-in-pytorch-from-scratch/ for this implementation
+
 import torchvision.transforms as transforms
 import torch
 import torch.nn as nn

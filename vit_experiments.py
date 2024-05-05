@@ -136,11 +136,8 @@ def test(device, model: nn.Module, dataloader: DataLoader, max_samples=None) -> 
 
 def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         wandb.init(
-        # Set the project where this run will be logged
         project="OnePointFiveBitQuantizationResultsFinal",
-        # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
         name=wandb_log_name,
-        # Track hyperparameters and run metadata
         )
         s = time.time()
         for i in range(5):
@@ -152,8 +149,6 @@ def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         wandb.log({"Test Accuracy": score})
         wandb.log({"Average Inference Time": average_inference_time})
         
-        #print(f"Size of model is {print_model_size(model_to_test)}")
-
         wandb.finish()
 
 print("Training vit")
@@ -189,7 +184,7 @@ test_and_export_logs(device = device, wandb_log_name = "vit-CIFAR-10-Quantizatio
 torch.save(vit.state_dict(), "vit_quantize_aware.pth")
 
 vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
-PruningUtils.prune_model_iterative(vit_quantized_aware_pruned_conv)
+PruningUtils.prune_model_l2_structured(vit_quantized_aware_pruned_conv)
 test_and_export_logs(device, "vit-CIFAR-10-QuantizationAwarePrunedIterative", vit_quantized_aware_pruned_conv, testloader_cifar_10)
 
 vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)

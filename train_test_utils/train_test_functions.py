@@ -100,11 +100,8 @@ class TrainTestUtils:
 
     def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         wandb.init(
-        # Set the project where this run will be logged
         project="OnePointFiveBitQuantizationResultsFinal",
-        # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
         name=wandb_log_name,
-        # Track hyperparameters and run metadata
         )
         s = time.time()
         for i in range(30):
@@ -116,6 +113,4 @@ class TrainTestUtils:
         wandb.log({"Test Accuracy": score})
         wandb.log({"Average Inference Time": average_inference_time})
         
-        #print(f"Size of model is {print_model_size(model_to_test)}")
-
         wandb.finish()

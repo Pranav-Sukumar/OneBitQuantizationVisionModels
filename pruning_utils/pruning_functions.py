@@ -16,7 +16,7 @@ class PruningUtils:
                 prune.random_unstructured(module, name='weight', amount=0.3)
                 prune.remove(module, 'weight')
                 
-    def prune_model_iterative(model):
+    def prune_model_l2_structured(model):
         for name, module in model.named_modules():
             # prune 30% of connections in all 2D-conv layers
             if isinstance(module, torch.nn.Conv2d):

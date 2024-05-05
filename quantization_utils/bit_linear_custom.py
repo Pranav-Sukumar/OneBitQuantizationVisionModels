@@ -1,3 +1,5 @@
+# Credits to Microsoft Paper: https://github.com/microsoft/unilm/blob/master/bitnet/The-Era-of-1-bit-LLMs__Training_Tips_Code_FAQ.pdf
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
