@@ -18,7 +18,7 @@ from pruning_utils.pruning_functions import PruningUtils
 
 import wandb
 
-NUM_EPOCHS = 10
+NUM_EPOCHS = 7
 wandb.login()
 
 if torch.cuda.is_available():
