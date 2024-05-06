@@ -17,7 +17,7 @@ from pruning_utils.pruning_functions import PruningUtils
 import wandb
 wandb.login()
 
-NUM_EPOCHS = 30
+NUM_EPOCHS = 20
 
 if torch.cuda.is_available():
   device = torch.device('cuda')
