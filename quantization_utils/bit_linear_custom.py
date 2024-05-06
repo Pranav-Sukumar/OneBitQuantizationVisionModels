@@ -40,8 +40,6 @@ def weight_quant(w):
     return u
 
 class BitLinear(nn.Linear):
-    """ This is only for training, and kernel optimization is needed for efficiency.
-    """
     def __init__(self, in_features, out_features, bias=True):
         super(BitLinear, self).__init__(in_features, out_features, bias)
         self.RMSNorm = RMSNorm(in_features)

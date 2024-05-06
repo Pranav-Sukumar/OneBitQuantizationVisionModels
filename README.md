@@ -23,7 +23,7 @@ The three models I chose for analysis are AlexNet, ResNet-18, and a Vision Trans
 In the main folder of the repository there are 3 python files for the experiments pertaining to each model (AlexNet, ResNet-18, and ViT). Each of these files trains the model, does 1.58-bit quantization, and tries different pruning strategies. Each experiment does this for both the CIFAR-10 and CIFAR-100 datasets. There is one additional python file determine_space_saved.py which does some calculations for the total space saved with quantization. Each experiment uses Weights and Biases to track and export logs. 
 
 ### Commands to Execute the Code
-I created a requirements.txt file which can be used to install all the libraries needed for this repository. However, the requirements.txt is likely overkill and the only libraries that need to be installed should be "torch", "torchvision", "transformers", and "wandb". After doing this, you can run any of the experiments by simply calling "python3 alexnet_experiments.py", "python3 resnet_18_experiments.py", "python3 vit_experiments.py", or "python3 determine_space_saved.py". 
+I created a requirements.txt file which can be used to install all the libraries needed for this repository. However, the requirements.txt is likely overkill and the only libraries that need to be installed should be "torch", "torchvision", "transformers", and "wandb". After doing this, you can run any of the experiments by simply calling "python3 alexnet_experiments.py", "python3 resnet_18_experiments.py", "python3 vit_experiments.py", or "python3 determine_space_saved.py". I ran the code in the GCP VM that had a T4 GPU.
 
 ### Results
 

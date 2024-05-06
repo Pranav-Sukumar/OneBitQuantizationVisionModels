@@ -8,8 +8,10 @@ import torchvision
 import torch.nn as nn
 import os
 
-# Function to count the number of linear weights
 def count_linear_weights(model):
+    '''
+        Count the number of linear weights in model
+    '''
     count = 0
     for module in model.modules():
         if isinstance(module, nn.Linear):
@@ -17,6 +19,9 @@ def count_linear_weights(model):
     return count
 
 def calculate_original_model_size(model):
+    '''
+        Calculate the size of the original model
+    '''
     torch.save(model.state_dict(), "tmp.pt")
     size_bytes = os.path.getsize("tmp.pt")
     #print(f"{size_bytes} Bytes")
@@ -24,6 +29,9 @@ def calculate_original_model_size(model):
     return size_bytes
 
 def calculate_quantized_model_size(model):
+    '''
+        Estimate the ideal size of the 1.58-bit quantized model
+    '''
     num_linear_weights = count_linear_weights(model)
     space_saved_per_weight_bits = 32-3
     

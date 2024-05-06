@@ -42,9 +42,6 @@ class QuantizationUtilityFunctions:
         # Initialize the recursive copy process
         recursive_layer_copy(result, model)
 
-        #print(f"Total layers: {total_layers}")
-        #print(f"Quantized layers: {num_layers_quantized}")
-
         return result
 
     def quantized_weights(weights: torch.Tensor) -> Tuple[torch.Tensor, float]:
@@ -64,7 +61,7 @@ class QuantizationUtilityFunctions:
                             This value does not need to be an 8-bit integer.
         '''
 
-
+        # First clamp, then subtract mean, then apply formula
         weights = torch.clamp(weights, min=-128, max=127)
         weights = weights - torch.mean(weights)
         q_max = 1
@@ -80,6 +77,9 @@ class QuantizationUtilityFunctions:
         return torch.clamp(result, min=-1, max=1), scale
 
     def quantize_layer_weights(device, model):
+        '''
+        Do 1.58 bit post training quantization for all linear layers
+        '''
         layers_quantized = 0
         for layer in model.children():
             if isinstance(layer, nn.Linear):
@@ -100,6 +100,9 @@ class QuantizationUtilityFunctions:
 
 
     def quantize_layer_weights_including_conv(device, model):
+        '''
+        Do 1.58 bit post training quantization for all linear and conv layers
+        '''
         layers_quantized = 0
         for layer in model.children():
             if isinstance(layer, nn.Linear) or isinstance(layer, nn.Conv2d):

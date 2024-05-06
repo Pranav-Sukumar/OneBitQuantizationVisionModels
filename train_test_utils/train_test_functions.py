@@ -14,6 +14,9 @@ import wandb
 
 class TrainTestUtils:
     def train(device, model: nn.Module, dataloader: DataLoader, experiment_name, num_epochs = 5):
+        '''
+        Train model and send logs to Weights and Biases
+        '''
         torch.manual_seed(0)
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = False
@@ -72,6 +75,9 @@ class TrainTestUtils:
         wandb.finish()
 
     def test(device, model: nn.Module, dataloader: DataLoader, max_samples=None) -> float:
+        '''
+        Test model
+        '''
         torch.manual_seed(0)
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = False
@@ -99,6 +105,9 @@ class TrainTestUtils:
         return 100 * correct / total
 
     def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
+        '''
+        Test model and compute average inference time and test accuracy and send to weights and biases
+        '''
         wandb.init(
         project="OnePointFiveBitQuantizationResultsFinal",
         name=wandb_log_name,
