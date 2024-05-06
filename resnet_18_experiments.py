@@ -8,7 +8,6 @@ from torch import Tensor
 import numpy as np
 from typing import Type
 import matplotlib.pyplot as plt
-import time
 from torch.utils.data import DataLoader
 from models.resnet_18_custom import BasicBlock
 from models.resnet_18_custom import ResNet
