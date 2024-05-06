@@ -35,12 +35,14 @@ def calculate_quantized_model_size(model):
 alexnet = AlexNet(num_classes=10)
 print(f"Alex Net Original Model Size: {calculate_original_model_size(alexnet)} Bytes")
 print(f"Alex Net Quantized Model Ideal Size: {calculate_quantized_model_size(alexnet)} Bytes")
-
+print(f"Alex Net has: {count_linear_weights(alexnet)} linear weights")
 
 resnet = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10)
 print(f"ResNet-18 Original Model Size: {calculate_original_model_size(resnet)} Bytes")
 print(f"ResNet-18 Quantized Model Ideal Size: {calculate_quantized_model_size(resnet)} Bytes")
-    
+print(f"ResNet-19 has: {count_linear_weights(resnet)} linear weights")
+
 vit = VITModelNotQuantized.vit_model
 print(f"ViT Original Model Size: {calculate_original_model_size(vit)} Bytes")
 print(f"ViT Quantized Model Ideal Size: {calculate_quantized_model_size(vit)} Bytes")
+print(f"ViT has: {count_linear_weights(vit)} linear weights")
