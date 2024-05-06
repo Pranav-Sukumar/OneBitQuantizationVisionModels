@@ -10,7 +10,7 @@ from typing import Type
 import matplotlib.pyplot as plt
 import time
 from torch.utils.data import DataLoader
-from models.vit import VITModelNotQuantized
+from models.vit import VITModelNotQuantized, VITModelNotQuantizedLarge
 from quantization_utils.bit_linear_custom import BitLinear
 
 from quantization_utils.quantization_functions import QuantizationUtilityFunctions
@@ -152,6 +152,7 @@ def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         wandb.finish()
 
 print("Training vit")
+'''
 
 vit = VITModelNotQuantized.vit_model.to(device)
 train(device, vit, trainloader_cifar_10, "vit-CIFAR-10-NoQuantization", NUM_EPOCHS)
@@ -194,3 +195,47 @@ test_and_export_logs(device, "vit-CIFAR-10-QuantizationAwarePrunedL1Unstructured
 vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
 PruningUtils.prune_model_random_unstructured(vit_quantized_aware_pruned_conv)
 test_and_export_logs(device, "vit-CIFAR-10-QuantizationAwarePrunedRandomUnstructured", vit_quantized_aware_pruned_conv, testloader_cifar_10)
+
+'''
+
+vit = VITModelNotQuantizedLarge.vit_model.to(device)
+train(device, vit, trainloader_cifar_100, "vit-CIFAR-100-NoQuantization", NUM_EPOCHS)
+test_and_export_logs(device = device, wandb_log_name = "vit-CIFAR-100-NoQuantization", model_to_test = vit, data_loader = testloader_cifar_100)
+
+torch.save(vit.state_dict(), "vit.pth")
+
+print("post quantization training for vit")
+vit_quantized_linear = QuantizationUtilityFunctions.copy_model(vit)
+QuantizationUtilityFunctions.quantize_layer_weights(device, vit_quantized_linear)
+test_and_export_logs(device, "vit-CIFAR-100-PostTrainingQuantizationLinear", vit_quantized_linear, testloader_cifar_100)
+
+print("quantization aware training for vit")
+vit_quantized_aware = VITModelNotQuantized.vit_model.to(device)
+def replace_linear_layers(module):
+    for name, child in module.named_children():
+        if isinstance(child, nn.Linear):
+            # Set the new layer with the same parameters
+            setattr(module, name, BitLinear(child.in_features, child.out_features, child.bias is not None))
+        else:
+            # Recursively apply the function to children
+            replace_linear_layers(child)
+
+
+replace_linear_layers(vit_quantized_aware)
+vit_quantized_aware.to(device)
+train(device, vit, trainloader_cifar_10, "vit-CIFAR-100-QuantizationAwareLinear", NUM_EPOCHS)
+test_and_export_logs(device = device, wandb_log_name = "vit-CIFAR-100-QuantizationAwareLinear", model_to_test = vit_quantized_aware, data_loader = testloader_cifar_100)
+
+torch.save(vit.state_dict(), "vit_quantize_aware.pth")
+
+vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
+PruningUtils.prune_model_l2_structured(vit_quantized_aware_pruned_conv)
+test_and_export_logs(device, "vit-CIFAR-100-QuantizationAwarePrunedIterative", vit_quantized_aware_pruned_conv, testloader_cifar_100)
+
+vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
+PruningUtils.prune_model_l1_unstructured(vit_quantized_aware_pruned_conv)
+test_and_export_logs(device, "vit-CIFAR-100-QuantizationAwarePrunedL1Unstructured", vit_quantized_aware_pruned_conv, testloader_cifar_100)
+
+vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
+PruningUtils.prune_model_random_unstructured(vit_quantized_aware_pruned_conv)
+test_and_export_logs(device, "vit-CIFAR-100-QuantizationAwarePrunedRandomUnstructured", vit_quantized_aware_pruned_conv, testloader_cifar_100)
