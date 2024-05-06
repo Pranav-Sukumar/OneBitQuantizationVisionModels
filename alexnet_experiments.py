@@ -8,7 +8,6 @@ from torch import Tensor
 import numpy as np
 from typing import Type
 import matplotlib.pyplot as plt
-import time
 from torch.utils.data import DataLoader
 from models.alex_net_custom import AlexNet
 from quantization_utils.quantization_functions import QuantizationUtilityFunctions

@@ -26,7 +26,7 @@ if torch.cuda.is_available():
 else:
   device = torch.device('cpu')
 
-
+# Need to scale image from 32x32 to 224x224 for pretrained model
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Resize((224, 224)),

@@ -27,7 +27,7 @@ def calculate_quantized_model_size(model):
     
     space_saved_total_bits = num_linear_weights * space_saved_per_weight_bits
     
-    new_space_bytes = calculate_original_model_size - (space_saved_total_bits/8)
+    new_space_bytes = calculate_original_model_size(model) - (space_saved_total_bits/8)
     return new_space_bytes
 
 alexnet = AlexNet(num_classes=10)
