@@ -32,7 +32,7 @@ AlexNet Results
 
 |          | **CIFAR-10**          |                     | **CIFAR-100**         |                     |
 |:--------:|:---------------------:|:-------------------:|:---------------------:|:-------------------:|
-| **Model**| **Test Accuracy**     | **Inference Time**  | **Test Accuracy**     | **Inference Time**  |
+| **Model**| **Test Accuracy**     | **Inference Time (s)**  | **Test Accuracy**     | **Inference Time (s)**  |
 | Default   | 77.9%  | 1.994 | 36.12%    | 2.003   |
 | Post-Training 1.58-Bit Quantization on Linear Layers   | 67.81%  | 1.97  | 10.77%   | 1.971 |
 | Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers   | 11.32%      | 1.913       | 1.68%      | 1.916    |
@@ -41,68 +41,30 @@ AlexNet Results
 | Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers   | 61.94%      | 1.945       | 8.5%       | 1.961   |
 
 
-CIFAR-10 AlexNet:
-AlexNet Default Test Accuracy (no quantization): 77.9%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Test Accuracy: 67.81%
-AlexNet Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Test Accuracy: 11.32%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Test Accuracy: 29.53%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Test Accuracy: 66.2%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Test Accuracy: 61.94%
+ResNet-18 Results
 
-CIFAR-100 AlexNet:
-AlexNet Default Test Accuracy (no quantization): 36.12%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Test Accuracy: 10.77%
-AlexNet Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Test Accuracy: 1.68%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Test Accuracy: 6.9%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Test Accuracy: 10.65%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Test Accuracy: 8.5%
-
-CIFAR-10 AlexNet:
-AlexNet Default Inference Time (no quantization): 77.9%
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Inference Time:
-
-CIFAR-100 AlexNet:
-AlexNet Default Inference Time (no quantization):
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Inference Time:
-AlexNet Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Inference Time:
+|          | **CIFAR-10**          |                     | **CIFAR-100**         |                     |
+|:--------:|:---------------------:|:-------------------:|:---------------------:|:-------------------:|
+| **Model**| **Test Accuracy**     | **Inference Time (s)**  | **Test Accuracy**     | **Inference Time (s)**  |
+| Default   | 77.9%  | 1.994 | 36.12%    | 2.003   |
+| Post-Training 1.58-Bit Quantization on Linear Layers   | 67.81%  | 1.97  | 10.77%   | 1.971 |
+| Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers   | 11.32%      | 1.913       | 1.68%      | 1.916    |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers   | 29.53%      | 1.952       | 6.9%       | 1.948   |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers   | 66.2%      | 1.952       | 10.65%       | 1.962   |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers   | 61.94%      | 1.945       | 8.5%       | 1.961   |
 
 
-CIFAR-10 ResNet-18:
-ResNet-18 Default Test Accuracy (no quantization): 80.12%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Test Accuracy: 79.28%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Test Accuracy: 17.95%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Test Accuracy: 51.97%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Test Accuracy: 78.21%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Test Accuracy: 59.14%
 
-CIFAR-100 ResNet-18:
-ResNet-18 Default Test Accuracy (no quantization): 50.64%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Test Accuracy: 44.67%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Test Accuracy: 1.83%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Test Accuracy: 10.19%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Test Accuracy: 42.62%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Test Accuracy: 13.58%
+ViT Results
+
+|          | **CIFAR-10**          |                     | **CIFAR-100**         |                     |
+|:--------:|:---------------------:|:-------------------:|:---------------------:|:-------------------:|
+| **Model**| **Test Accuracy**     | **Inference Time (s)**  | **Test Accuracy**     | **Inference Time (s)**  |
+| Default   | 77.9%  | 1.994 | 36.12%    | 2.003   |
+| Post-Training 1.58-Bit Quantization on Linear Layers   | 67.81%  | 1.97  | 10.77%   | 1.971 |
+| Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers   | 11.32%      | 1.913       | 1.68%      | 1.916    |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers   | 29.53%      | 1.952       | 6.9%       | 1.948   |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers   | 66.2%      | 1.952       | 10.65%       | 1.962   |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers   | 61.94%      | 1.945       | 8.5%       | 1.961   |
 
 
-CIFAR-10 ResNet-18:
-ResNet-18 Default Inference Time (no quantization): 77.9%
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Inference Time:
-
-CIFAR-100 ResNet-18:
-ResNet-18 Default Inference Time (no quantization):
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers Inference Time:
-ResNet-18 Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers Inference Time:
