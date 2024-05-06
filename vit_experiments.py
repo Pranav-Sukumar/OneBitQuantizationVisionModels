@@ -151,7 +151,7 @@ def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         
         wandb.finish()
 
-'''
+
 print("Training vit CIFAR-10")
 
 vit = VITModelNotQuantized.vit_model.to(device)
@@ -196,7 +196,7 @@ vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_qu
 PruningUtils.prune_model_random_unstructured(vit_quantized_aware_pruned_conv)
 test_and_export_logs(device, "vit-CIFAR-10-QuantizationAwarePrunedRandomUnstructured", vit_quantized_aware_pruned_conv, testloader_cifar_10)
 
-'''
+
 print("Training vit CIFAR-100")
 
 
