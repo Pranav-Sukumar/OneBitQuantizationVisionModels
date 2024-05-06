@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 from models.resnet_18_custom import BasicBlock
 from models.resnet_18_custom import ResNet
-from models.resnet_18_custom import ResNet
 from models.resnet_18_custom import ResNetQuantized
 
 from quantization_utils.quantization_functions import QuantizationUtilityFunctions

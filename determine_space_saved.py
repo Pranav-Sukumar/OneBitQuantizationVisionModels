@@ -1,6 +1,8 @@
 from models.vit import VITModelNotQuantized
 from models.alex_net_custom import AlexNet
 from models.resnet_18_custom import ResNet
+from models.resnet_18_custom import BasicBlock
+
 import torch
 import torchvision
 import torch.nn as nn
@@ -31,7 +33,14 @@ def calculate_quantized_model_size(model):
     return new_space_bytes
 
 alexnet = AlexNet(num_classes=10)
-print(calculate_original_model_size(alexnet))
-print(calculate_quantized_model_size(alexnet))
-    
+print(f"Alex Net Original Model Size: {calculate_original_model_size(alexnet)} Bytes")
+print(f"Alex Net Quantized Model Ideal Size: {calculate_quantized_model_size(alexnet)} Bytes")
 
+
+resnet = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10)
+print(f"ResNet-18 Original Model Size: {calculate_original_model_size(resnet)} Bytes")
+print(f"ResNet-18 Quantized Model Ideal Size: {calculate_quantized_model_size(resnet)} Bytes")
+    
+vit = VITModelNotQuantized.vit_model
+print(f"ViT Original Model Size: {calculate_original_model_size(vit)} Bytes")
+print(f"ViT Quantized Model Ideal Size: {calculate_quantized_model_size(vit)} Bytes")
