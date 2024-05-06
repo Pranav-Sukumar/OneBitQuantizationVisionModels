@@ -207,12 +207,12 @@ test_and_export_logs(device = device, wandb_log_name = "vit-CIFAR-100-NoQuantiza
 torch.save(vit.state_dict(), "vit.pth")
 
 print("post quantization training for vit")
-vit_quantized_linear = VITModelNotQuantizedLarge.copy_model(vit)
+vit_quantized_linear = QuantizationUtilityFunctions.copy_model(vit)
 QuantizationUtilityFunctions.quantize_layer_weights(device, vit_quantized_linear)
 test_and_export_logs(device, "vit-CIFAR-100-PostTrainingQuantizationLinear", vit_quantized_linear, testloader_cifar_100)
 
 print("quantization aware training for vit")
-vit_quantized_aware = VITModelNotQuantized.vit_model.to(device)
+vit_quantized_aware = VITModelNotQuantizedLarge.vit_model.to(device)
 def replace_linear_layers(module):
     for name, child in module.named_children():
         if isinstance(child, nn.Linear):
