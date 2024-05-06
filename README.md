@@ -33,12 +33,12 @@ AlexNet Results
 |          | **CIFAR-10**          |                     | **CIFAR-100**         |                     |
 |:--------:|:---------------------:|:-------------------:|:---------------------:|:-------------------:|
 | **Model**| **Test Accuracy**     | **Inference Time**  | **Test Accuracy**     | **Inference Time**  |
-| Default   | 77.9%  | x | 36.12%    | x   |
-| Post-Training 1.58-Bit Quantization on Linear Layers   | 67.81%  | x  | 10.77%   | x |
-| Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers   | 11.32%      | x       | 1.68%      | x   |
-| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers   | 29.53%      | x       | 6.9%       | x   |
-| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers   | 66.2%      | x       | 10.65%       | x   |
-| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers   | 61.94%      | x       | 8.5%       | x   |
+| Default   | 77.9%  | 1.994 | 36.12%    | 2.003   |
+| Post-Training 1.58-Bit Quantization on Linear Layers   | 67.81%  | 1.97  | 10.77%   | 1.971 |
+| Post-Training 1.58-Bit Quantization on Linear and Convolutional Layers   | 11.32%      | 1.913       | 1.68%      | 1.916    |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% Random Pruning on Conv Layers   | 29.53%      | 1.952       | 6.9%       | 1.948   |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L1 Pruning on Conv Layers   | 66.2%      | 1.952       | 10.65%       | 1.962   |
+| Post-Training 1.58-Bit Quantization on Linear Layers Followed with 30% L2 Pruning on Conv Layers   | 61.94%      | 1.945       | 8.5%       | 1.961   |
 
 
 CIFAR-10 AlexNet:
