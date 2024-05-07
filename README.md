@@ -57,14 +57,12 @@ ResNet-18 Results
 
 ViT Results
 
-|          | **CIFAR-10**          |                     | **CIFAR-100**         |                     |
-|:--------:|:---------------------:|:-------------------:|:---------------------:|:-------------------:|
-| **Model**| **Test Accuracy**     | **Inference Time (s)**  | **Test Accuracy**     | **Inference Time (s)**  |
+|          | **CIFAR-10**          |                     |
+|:--------:|:---------------------:|:-------------------:|
+| **Model**| **Test Accuracy**     | **Inference Time (s)**  | 
 | Default   | 98.5%  | 121.91 | x    | x   |
-| Post-Training 1.58-Bit Quantization on Linear Layers   | 10.04%  | 102.715  | x   | x |
-| Quantization-Aware Training (1.58-Bit) on Linear Layers   | 67.78%  | 113.28     | x  |x    |
-| Quantization-Aware Training (1.58-Bit) on Linear Layer Followed with 30% Random Pruning on Conv Layers   | 53.8%      | 109.98       | x     | x  |
-| Quantization-Aware Training (1.58-Bit) on Linear Layer Followed with 30% L1 Pruning on Conv Layers   | 64.73%     | 111.59      | x      | x   |
-| Quantization-Aware Training (1.58-Bit) on Linear Layer Followed with 30% L2 Pruning on Conv Layers   | 50.22%     | 110.42     | x     | x  |
-
-
+| Post-Training 1.58-Bit Quantization on Linear Layers   | 10.04%  | 102.715  | 
+| Quantization-Aware Training (1.58-Bit) on Linear Layers   | 67.78%  | 113.28     | 
+| Quantization-Aware Training (1.58-Bit) on Linear Layer Followed with 30% Random Pruning on Conv Layers   | 53.8%      | 109.98       | 
+| Quantization-Aware Training (1.58-Bit) on Linear Layer Followed with 30% L1 Pruning on Conv Layers   | 64.73%     | 111.59      |
+| Quantization-Aware Training (1.58-Bit) on Linear Layer Followed with 30% L2 Pruning on Conv Layers   | 50.22%     | 110.42     | 
