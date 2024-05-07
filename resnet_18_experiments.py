@@ -12,12 +12,9 @@ from torch.utils.data import DataLoader
 from models.resnet_18_custom import BasicBlock
 from models.resnet_18_custom import ResNet
 from models.resnet_18_custom import ResNetQuantized
-
 from quantization_utils.quantization_functions import QuantizationUtilityFunctions
 from train_test_utils.train_test_functions import TrainTestUtils
 from pruning_utils.pruning_functions import PruningUtils
-
-
 import wandb
 
 NUM_EPOCHS = 30
@@ -62,33 +59,40 @@ testloader_cifar_100 = torch.utils.data.DataLoader(testset_cifar_100, batch_size
 
 print("Testing CIFAR-10")
 
+# Train Resnet-18 on Cifar-10
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=10).to(device)
 TrainTestUtils.train(device, resnet_18, trainloader_cifar_10, "ResNet18-CIFAR-10-NoQuantization", NUM_EPOCHS)
 TrainTestUtils.test_and_export_logs(device = device, wandb_log_name = "ResNet18-CIFAR-10-NoQuantization", model_to_test = resnet_18, data_loader = testloader_cifar_10)
 
+# Do post training quantization on just linear layers
 resnet_18_quantized_linear = QuantizationUtilityFunctions.copy_model(resnet_18)
 QuantizationUtilityFunctions.quantize_layer_weights(device, resnet_18_quantized_linear)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinear", resnet_18_quantized_linear, testloader_cifar_10)
 
-
+# Do post training quantization on linear and convolutional layers
 resnet_18_quantized_linear_and_conv = QuantizationUtilityFunctions.copy_model(resnet_18)
 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, resnet_18_quantized_linear_and_conv)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinearAndConv", resnet_18_quantized_linear_and_conv, testloader_cifar_10)
 
 print("Pruning CIFAR-10")
 
+# Do L2 structured pruning
 resnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(resnet_18_quantized_linear)
 PruningUtils.prune_model_l2_structured(resnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinearPrunedIterative", resnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
+# Do L1 unstructured pruning
 resnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(resnet_18_quantized_linear)
 PruningUtils.prune_model_l1_unstructured(resnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinearPrunedL1Unstructured", resnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
+#Do Random unstructured pruning
 resnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(resnet_18_quantized_linear)
 PruningUtils.prune_model_random_unstructured(resnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "ResNet18-CIFAR-10-PostTrainingQuantizationLinearPrunedRandomUnstructured", resnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
+
+# Repeat for CIFAR-100
 print("Now Testing CIFAR-100")
 
 resnet_18 = ResNet(img_channels=3, num_layers=18, block=BasicBlock, num_classes=100).to(device)

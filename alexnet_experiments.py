@@ -58,33 +58,37 @@ testloader_cifar_100 = torch.utils.data.DataLoader(testset_cifar_100, batch_size
 
 print("Testing CIFAR-10")
 
+# Train alexnet on cifar-10
 alexnet = AlexNet(num_classes=10).to(device)
 TrainTestUtils.train(device, alexnet, trainloader_cifar_10, "AlexNet-CIFAR-10-NoQuantization", NUM_EPOCHS)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-NoQuantization", alexnet, testloader_cifar_10)
 
-
+# Post quantization on linear layers
 alexnet_quantized_linear = QuantizationUtilityFunctions.copy_model(alexnet)
 QuantizationUtilityFunctions.quantize_layer_weights(device, alexnet_quantized_linear)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinear", alexnet_quantized_linear, testloader_cifar_10)
 
-
+# Post quantization on linear and conv layers
 alexnet_quantized_linear_and_conv = QuantizationUtilityFunctions.copy_model(alexnet)
 QuantizationUtilityFunctions.quantize_layer_weights_including_conv(device, alexnet_quantized_linear_and_conv)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinearAndConv", alexnet_quantized_linear_and_conv, testloader_cifar_10)
 
-
+# L2 unstructured pruning
 alexnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(alexnet_quantized_linear)
 PruningUtils.prune_model_l2_structured(alexnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedIterative", alexnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
+# L1 unstructured pruning
 alexnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(alexnet_quantized_linear)
 PruningUtils.prune_model_l1_unstructured(alexnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedL1Unstructured", alexnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
+# Random unstructured pruning
 alexnet_quantized_linear_pruned_conv = QuantizationUtilityFunctions.copy_model(alexnet_quantized_linear)
 PruningUtils.prune_model_random_unstructured(alexnet_quantized_linear_pruned_conv)
 TrainTestUtils.test_and_export_logs(device, "AlexNet-CIFAR-10-PostTrainingQuantizationLinearPrunedRandomUnstructured", alexnet_quantized_linear_pruned_conv, testloader_cifar_10)
 
+# Repeat for cifar-100
 print("Now Testing CIFAR-100")
 
 alexnet = AlexNet(num_classes=100).to(device)

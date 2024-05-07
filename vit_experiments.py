@@ -12,10 +12,8 @@ import time
 from torch.utils.data import DataLoader
 from models.vit import VITModelNotQuantized, VITModelNotQuantizedLarge
 from quantization_utils.bit_linear_custom import BitLinear
-
 from quantization_utils.quantization_functions import QuantizationUtilityFunctions
 from pruning_utils.pruning_functions import PruningUtils
-
 import wandb
 
 NUM_EPOCHS = 7
@@ -59,15 +57,17 @@ testloader_cifar_100 = torch.utils.data.DataLoader(testset_cifar_100, batch_size
                                          shuffle=False, num_workers=2)
 
 def train(device, model: nn.Module, dataloader: DataLoader, experiment_name, num_epochs = 5):
+    # Seed for reproducibility
+    torch.manual_seed(0)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    
     wandb.init(
-        # Set the project where this run will be logged
         project="OnePointFiveBitQuantizationResultsFinal",
-        # We pass a run name (otherwise it’ll be randomly assigned, like sunshine-lollypop-10)
         name=experiment_name,
-        # Track hyperparameters and run metadata
         config={
         "learning_rate": 0.001,
-        "architecture": "ResNet18",
+        "architecture": "ViT",
         "epochs": num_epochs,
         })
     
@@ -75,7 +75,6 @@ def train(device, model: nn.Module, dataloader: DataLoader, experiment_name, num
     optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
 
     for epoch in range(num_epochs):  # loop over the dataset multiple times
-
         running_loss = 0.0
         total_batch_loss = 0.0
         num_batches = 0
@@ -97,7 +96,6 @@ def train(device, model: nn.Module, dataloader: DataLoader, experiment_name, num
             loss.backward()
             optimizer.step()
 
-            # print statistics
             running_loss += loss.item()
             total_batch_loss += loss.item()
             if i % 2000 == 1999:    # print every 2000 mini-batches
@@ -105,12 +103,18 @@ def train(device, model: nn.Module, dataloader: DataLoader, experiment_name, num
                     (epoch + 1, i + 1, running_loss / 2000))
                 running_loss = 0.0
         average_batch_loss = total_batch_loss / num_batches
+        # Send data to wandb
         wandb.log({"loss": average_batch_loss})
         print(f"Epoch {epoch} has a loss of {average_batch_loss}")
     print('Finished Training')
     wandb.finish()
 
 def test(device, model: nn.Module, dataloader: DataLoader, max_samples=None) -> float:
+    # Seed for reproducibility
+    torch.manual_seed(0)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    
     correct = 0
     total = 0
     n_inferences = 0
@@ -140,12 +144,14 @@ def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
         name=wandb_log_name,
         )
         s = time.time()
+        # Find the average inference time over 5 samples
         for i in range(5):
             score = test(device = device, model = model_to_test, dataloader = data_loader)
         average_inference_time = (time.time() - s) / 5
         print(average_inference_time)
         print('Accuracy of the network on the test images: {}%'.format(score))
 
+        # Send data to wandb
         wandb.log({"Test Accuracy": score})
         wandb.log({"Average Inference Time": average_inference_time})
         
@@ -154,17 +160,19 @@ def test_and_export_logs(device, wandb_log_name, model_to_test, data_loader):
 
 print("Training vit CIFAR-10")
 
+# Finetune the pretrained model without quantization
 vit = VITModelNotQuantized.vit_model.to(device)
 train(device, vit, trainloader_cifar_10, "vit-CIFAR-10-NoQuantization", NUM_EPOCHS)
 test_and_export_logs(device = device, wandb_log_name = "vit-CIFAR-10-NoQuantization", model_to_test = vit, data_loader = testloader_cifar_10)
-
 torch.save(vit.state_dict(), "vit.pth")
 
+# Perform post training quantization
 print("post quantization training for vit")
 vit_quantized_linear = QuantizationUtilityFunctions.copy_model(vit)
 QuantizationUtilityFunctions.quantize_layer_weights(device, vit_quantized_linear)
 test_and_export_logs(device, "vit-CIFAR-10-PostTrainingQuantizationLinear", vit_quantized_linear, testloader_cifar_10)
 
+# Quantization aware training on the pretrained model
 print("quantization aware training for vit")
 vit_quantized_aware = VITModelNotQuantized.vit_model.to(device)
 def replace_linear_layers(module):
@@ -176,22 +184,23 @@ def replace_linear_layers(module):
             # Recursively apply the function to children
             replace_linear_layers(child)
 
-
 replace_linear_layers(vit_quantized_aware)
 vit_quantized_aware.to(device)
 train(device, vit, trainloader_cifar_10, "vit-CIFAR-10-QuantizationAwareLinear", NUM_EPOCHS)
 test_and_export_logs(device = device, wandb_log_name = "vit-CIFAR-10-QuantizationAwareLinear", model_to_test = vit_quantized_aware, data_loader = testloader_cifar_10)
-
 torch.save(vit.state_dict(), "vit_quantize_aware.pth")
 
+# Do L2 structured pruning
 vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
 PruningUtils.prune_model_l2_structured(vit_quantized_aware_pruned_conv)
 test_and_export_logs(device, "vit-CIFAR-10-QuantizationAwarePrunedIterative", vit_quantized_aware_pruned_conv, testloader_cifar_10)
 
+# Do L1 unstructured pruning
 vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
 PruningUtils.prune_model_l1_unstructured(vit_quantized_aware_pruned_conv)
 test_and_export_logs(device, "vit-CIFAR-10-QuantizationAwarePrunedL1Unstructured", vit_quantized_aware_pruned_conv, testloader_cifar_10)
 
+# Do Random unstructured pruning
 vit_quantized_aware_pruned_conv = QuantizationUtilityFunctions.copy_model(vit_quantized_aware)
 PruningUtils.prune_model_random_unstructured(vit_quantized_aware_pruned_conv)
 test_and_export_logs(device, "vit-CIFAR-10-QuantizationAwarePrunedRandomUnstructured", vit_quantized_aware_pruned_conv, testloader_cifar_10)
