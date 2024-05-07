@@ -33,7 +33,7 @@ def calculate_quantized_model_size(model):
         Estimate the ideal size of the 1.58-bit quantized model
     '''
     num_linear_weights = count_linear_weights(model)
-    space_saved_per_weight_bits = 32-3
+    space_saved_per_weight_bits = 32-2
     
     space_saved_total_bits = num_linear_weights * space_saved_per_weight_bits
     
